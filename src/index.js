@@ -18,20 +18,27 @@ class App extends React.Component {
     );
   }
 
-  render() {
-
-  if (!this.state.lat && this.state.errorMessage) {
-    return <div>Error: {this.state.errorMessage}</div>
-  }
-
-  if (this.state.lat && !this.state.errorMessage) {
-    return <SeasonDisplay lat={this.state.lat}/>
-  }
-
-  if (!this.state.lat && !this.state.errorMessage) {
-    return <Loader message="Waiting to accept location preferences"/>
-  }
+  conditionRender() {
+    if (!this.state.lat && this.state.errorMessage) {
+      return <div>Error: {this.state.errorMessage}</div>
+    }
   
-}}
+    if (this.state.lat && !this.state.errorMessage) {
+      return <SeasonDisplay lat={this.state.lat}/>
+    }
+  
+    if (!this.state.lat && !this.state.errorMessage) {
+      return <Loader message="Waiting to accept location preferences"/>
+    }
+    
+  }
+
+  render() {
+    return (
+    <div className="app">
+      {this.conditionRender()}
+    </div>
+    )
+  }}
 
 ReactDOM.render(<App />, document.querySelector('#root'));
