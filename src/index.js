@@ -2,6 +2,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Loader from './Loader'
 
 class App extends React.Component {
 
@@ -28,7 +29,7 @@ class App extends React.Component {
   }
 
   if (!this.state.lat && !this.state.errorMessage) {
-    return <div>Loading...</div>
+    return <Loader message="Waiting to accept location preferences"/>
   }
   
 }}
